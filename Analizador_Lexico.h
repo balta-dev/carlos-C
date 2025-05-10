@@ -4,6 +4,7 @@
 #include <stdio.h>
 
 #define MAX_SIM 200
+#define MAX_LEX 256
 #define FIN_ARCH '\0'
 
 typedef enum {
@@ -19,7 +20,7 @@ typedef enum {
 
 typedef struct {
     TipoSG compLex;
-    char lexema[256];  // o char* si lo vas a manejar dinámicamente
+    char lexema[MAX_LEX];  // o char* si lo vas a manejar dinámicamente
 } TElemTS;
 
 typedef struct {
@@ -31,10 +32,10 @@ void InicializarTS(TablaDeSimbolos* TS);
 bool agregarTS(TablaDeSimbolos* TS, const char* palabra, int CompLex);
 void CompletarTS(TablaDeSimbolos* TS);
 void LeerCar(FILE* fuente, long* control, char* car);
-bool EsId(FILE* fuente, long* control, char* lexema, size_t maxLexema);
-bool EsConstanteReal(FILE* fuente, long* control, char* lexema, size_t maxLexema);
-bool EsCadena(FILE* fuente, long* control, char* lexema, size_t maxLexema);
-bool EsSimboloEspecial(FILE* fuente, long* control, char* lexema, size_t maxLexema);
-void ObtenerSiguienteCompLex(FILE* fuente, long* control, TipoSG* CompLex, char* lexema, size_t maxLexema, TablaDeSimbolos* TS);
+bool EsId(FILE* fuente, long* control, char* lexema);
+bool EsConstanteReal(FILE* fuente, long* control, char* lexema);
+bool EsCadena(FILE* fuente, long* control, char* lexema);
+bool EsSimboloEspecial(FILE* fuente, long* control, char* lexema, TipoSG* CompLex);
+void ObtenerSiguienteCompLex(FILE* fuente, long* control, TipoSG* CompLex, char* lexema, TablaDeSimbolos* TS);
 
 #endif
